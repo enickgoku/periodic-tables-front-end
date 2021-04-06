@@ -5,8 +5,7 @@
   "main": "src/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jeriale/periodic-tables-front-end",
-    "directory": "/front-end"
+    "url": "https://github.com/jeriale/periodic-tables-front-end"
   },
   "private": true,
   "dependencies": {
