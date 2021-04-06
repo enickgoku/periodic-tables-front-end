@@ -42,6 +42,7 @@ function EditReservationForm({ currentDate, currentTime, changeDate }) {
         getReservation(reservationId, abortController.signal)
             .then(setFormData)
             .catch(setFormError);
+        return () => abortController.abort();
     }, [reservationId]);
 
     /**
