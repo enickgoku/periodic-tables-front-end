@@ -1,0 +1,12 @@
+::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}
+
+/* Removes caret from dropdown buttons */
+.dropdown-toggle::after {
+    display: none !important;
+}
+
+select {
+    -moz-appearance: none;
+}

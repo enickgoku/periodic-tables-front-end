@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: table/table-form/CreateTableForm.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: table/table-form/CreateTableForm.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>// React + Hooks
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+
+// React Components
+import ErrorAlert from "../../layout/ErrorAlert";
+
+// React Bootstrap Components
+import Col from "react-bootstrap/Col";
+import Form from "react-bootstrap/Form";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
+import Button from "react-bootstrap/Button";
+
+// Utils
+import { createTable } from "../../utils/api";
+
+/**
+ * Defines the form for creating a new table.
+ * @param {callback} setHeading
+ *  a function used to lift state to `heading` in the `Routes` component.
+ * @returns {JSX.Element}
+ */
+function CreateTableForm() {
+    const history = useHistory();
+
+    const [formData, setFormData] = useState({});
+    const [formError, setFormError] = useState(null);
+
+    /**
+    * Updates the state of the `formData` object on all controlled inputs.
+    * @param currentTarget
+    *  The target input field value (`onChange`) is assigned to the corresponding key in the `formData` object.
+    */
+    function handleFormChange({ currentTarget }) {
+        setFormError(null);
+        setFormData({
+            ...formData,
+            [currentTarget.name]: currentTarget.value
+        });
+    }
+
+    /**
+    * Handles the form's `onSubmit` event and sends data to the API for posting.
+    */
+    function handleTableFormSubmit(event) {
+        event.preventDefault();
+        const data = {
+            table_name: formData.table_name,
+            capacity: parseInt(formData.capacity),
+        }
+        createTable({ data })
+            .then(() => history.push("/"))
+            .catch(setFormError);
+    }
+
+    /**
+    * Handles the form's cancel button `onClick` event by going to the previous page visited.
+    */
+    function handleCancelClick() {
+        history.goBack();
+    }
+
+    return (
+        &lt;Col className="col col-sm-8 col-md-6 col-lg-5 col-xl-4 mb-5">
+            &lt;ErrorAlert error={formError} />
+            &lt;Form onSubmit={handleTableFormSubmit}>
+                &lt;Form.Group controlId="first_name">
+                    &lt;Form.Label>Table Name:&lt;/Form.Label>
+                    &lt;Form.Control
+                        type="text"
+                        name="table_name"
+                        placeholder="ex. Patio #3"
+                        size="lg"
+                        required={true}
+                        onChange={handleFormChange}
+                    />
+                &lt;/Form.Group>
+                &lt;Form.Group controlId="first_name">
+                    &lt;Form.Label>Capacity:&lt;/Form.Label>
+                    &lt;Form.Control
+                        type="number"
+                        name="capacity"
+                        size="lg"
+                        required={true}
+                        onChange={handleFormChange}
+                    />
+                &lt;/Form.Group>
+                &lt;ButtonGroup className="mt-4 w-100">
+                    &lt;Button
+                        variant="dark"
+                        className="col-3"
+                        onClick={handleCancelClick}
+                    >
+                        Cancel
+                    &lt;/Button>
+                    &lt;Button
+                        variant="success"
+                        type="submit"
+                    >
+                        Submit
+                    &lt;/Button>
+                &lt;/ButtonGroup>
+            &lt;/Form>
+        &lt;/Col>
+    );
+}
+
+export default CreateTableForm;</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#API_BASE_URL">API_BASE_URL</a></li><li><a href="global.html#App">App</a></li><li><a href="global.html#asDateString">asDateString</a></li><li><a href="global.html#createReservation">createReservation</a></li><li><a href="global.html#CreateReservationForm">CreateReservationForm</a></li><li><a href="global.html#createTable">createTable</a></li><li><a href="global.html#CreateTableForm">CreateTableForm</a></li><li><a href="global.html#currentDate">currentDate</a></li><li><a href="global.html#Dashboard">Dashboard</a></li><li><a href="global.html#dismissReservation">dismissReservation</a></li><li><a href="global.html#editReservation">editReservation</a></li><li><a href="global.html#EditReservationForm">EditReservationForm</a></li><li><a href="global.html#editTable">editTable</a></li><li><a href="global.html#EditTableForm">EditTableForm</a></li><li><a href="global.html#ErrorAlert">ErrorAlert</a></li><li><a href="global.html#fetchJson">fetchJson</a></li><li><a href="global.html#formatAsDate">formatAsDate</a></li><li><a href="global.html#formatAsTime">formatAsTime</a></li><li><a href="global.html#getReservation">getReservation</a></li><li><a href="global.html#getTable">getTable</a></li><li><a href="global.html#globalMenuOptions">globalMenuOptions</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#headers">headers</a></li><li><a href="global.html#listReservations">listReservations</a></li><li><a href="global.html#listTables">listTables</a></li><li><a href="global.html#Menu">Menu</a></li><li><a href="global.html#NotFound">NotFound</a></li><li><a href="global.html#ReservationCard">ReservationCard</a></li><li><a href="global.html#ReservationCardBody">ReservationCardBody</a></li><li><a href="global.html#ReservationCardOptions">ReservationCardOptions</a></li><li><a href="global.html#ReservationsList">ReservationsList</a></li><li><a href="global.html#ReservationsListOptions">ReservationsListOptions</a></li><li><a href="global.html#seatReservation">seatReservation</a></li><li><a href="global.html#SeatReservationForm">SeatReservationForm</a></li><li><a href="global.html#TableCard">TableCard</a></li><li><a href="global.html#TableCardBody">TableCardBody</a></li><li><a href="global.html#TableCardOptions">TableCardOptions</a></li><li><a href="global.html#TablesList">TablesList</a></li><li><a href="global.html#TablesListOptions">TablesListOptions</a></li><li><a href="global.html#today">today</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Mon Apr 05 2021 22:23:59 GMT-0400 (Eastern Daylight Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

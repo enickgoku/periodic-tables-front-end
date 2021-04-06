@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: table/table-card/TableCardOptions.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: table/table-card/TableCardOptions.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>// React + Hooks
+import React, { useState } from "react";
+
+// React Bootstrap Components
+import ButtonGroup from "react-bootstrap/ButtonGroup";
+import Button from "react-bootstrap/esm/Button";
+import Modal from "react-bootstrap/Modal";
+
+// API
+import { dismissReservation } from "../../utils/api";
+
+/**
+ * Displays the edit option for each `TableCard`.
+ * @param {object} table
+ *  an object containing table data.
+ * @returns {JSX.Element}
+ */
+function TableCardOptions({ table }) {
+  const [showConfirmation, setShowConfirmation] = useState(false);
+
+  const handleClose = () => setShowConfirmation(false);
+  const handleShow = () => setShowConfirmation(true);
+
+  function handleReservationDismiss() {
+    dismissReservation(table.table_id)
+      .then(() => window.location.reload())
+      .catch((error) => window.alert(error));
+  }
+
+  return (
+    &lt;>
+      &lt;ButtonGroup vertical>
+        {table.reservation_id ? (
+          &lt;Button
+            variant="dark"
+            className="d-flex align-items-center text-muted border border-list-bg"
+            style={{ fontSize: "1.2rem" }}
+            onClick={handleShow}
+            data-table-id-finish={table.table_id}
+          >
+            &lt;i className="ri-user-unfollow-fill" title="Dismiss Reservation" />
+          &lt;/Button>
+        ) : null}
+        &lt;Button
+          variant="dark"
+          className="d-flex align-items-center text-muted border border-list-bg"
+          style={{ fontSize: "1.2rem" }}
+          href={`/tables/${table.table_id}/edit`}
+        >
+          &lt;i className="ri-pencil-line" title="Edit Table" />
+        &lt;/Button>
+      &lt;/ButtonGroup>
+      &lt;Modal
+        show={showConfirmation}
+        onHide={handleClose}
+      >
+        &lt;Modal.Header>
+          &lt;Modal.Title>Dismiss Reservation&lt;/Modal.Title>
+        &lt;/Modal.Header>
+        &lt;Modal.Body>
+          You are about to dismiss the reservation from this table. This cannot be undone. Continue?
+        &lt;/Modal.Body>
+        &lt;Modal.Footer>
+          &lt;Button variant="dark" onClick={handleClose}>
+            Cancel
+          &lt;/Button>
+          &lt;Button variant="danger" onClick={handleReservationDismiss}>
+            Continue
+          &lt;/Button>
+        &lt;/Modal.Footer>
+      &lt;/Modal>
+    &lt;/>
+  );
+}
+
+export default TableCardOptions;</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#API_BASE_URL">API_BASE_URL</a></li><li><a href="global.html#App">App</a></li><li><a href="global.html#asDateString">asDateString</a></li><li><a href="global.html#createReservation">createReservation</a></li><li><a href="global.html#CreateReservationForm">CreateReservationForm</a></li><li><a href="global.html#createTable">createTable</a></li><li><a href="global.html#CreateTableForm">CreateTableForm</a></li><li><a href="global.html#currentDate">currentDate</a></li><li><a href="global.html#Dashboard">Dashboard</a></li><li><a href="global.html#dismissReservation">dismissReservation</a></li><li><a href="global.html#editReservation">editReservation</a></li><li><a href="global.html#EditReservationForm">EditReservationForm</a></li><li><a href="global.html#editTable">editTable</a></li><li><a href="global.html#EditTableForm">EditTableForm</a></li><li><a href="global.html#ErrorAlert">ErrorAlert</a></li><li><a href="global.html#fetchJson">fetchJson</a></li><li><a href="global.html#formatAsDate">formatAsDate</a></li><li><a href="global.html#formatAsTime">formatAsTime</a></li><li><a href="global.html#getReservation">getReservation</a></li><li><a href="global.html#getTable">getTable</a></li><li><a href="global.html#globalMenuOptions">globalMenuOptions</a></li><li><a href="global.html#Header">Header</a></li><li><a href="global.html#headers">headers</a></li><li><a href="global.html#listReservations">listReservations</a></li><li><a href="global.html#listTables">listTables</a></li><li><a href="global.html#Menu">Menu</a></li><li><a href="global.html#NotFound">NotFound</a></li><li><a href="global.html#ReservationCard">ReservationCard</a></li><li><a href="global.html#ReservationCardBody">ReservationCardBody</a></li><li><a href="global.html#ReservationCardOptions">ReservationCardOptions</a></li><li><a href="global.html#ReservationsList">ReservationsList</a></li><li><a href="global.html#ReservationsListOptions">ReservationsListOptions</a></li><li><a href="global.html#seatReservation">seatReservation</a></li><li><a href="global.html#SeatReservationForm">SeatReservationForm</a></li><li><a href="global.html#TableCard">TableCard</a></li><li><a href="global.html#TableCardBody">TableCardBody</a></li><li><a href="global.html#TableCardOptions">TableCardOptions</a></li><li><a href="global.html#TablesList">TablesList</a></li><li><a href="global.html#TablesListOptions">TablesListOptions</a></li><li><a href="global.html#today">today</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Mon Apr 05 2021 22:23:59 GMT-0400 (Eastern Daylight Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

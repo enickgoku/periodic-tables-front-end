@@ -1,0 +1,43 @@
+// Color System
+$success: #367336;
+$danger: #932727;
+
+// Body
+$body-bg: #21262b;
+$body-color: #fffaf0;
+$component-active-bg: #68c4eb;
+$link-color: #fffaf0;
+$link-hover-color: #fffaf0;
+$link-hover-decoration: none;
+
+// Typography
+$font-family-sans-serif: 'Quicksand', sans-serif;
+$font-size-base: 0.9rem;
+$line-height-base: 1.5;
+
+// Inputs
+$input-bg: #33373c;
+$input-color: #fffaf0;
+$input-border-color: #1e2227;
+
+// Dropdown
+$dropdown-bg: #33373c;
+$dropdown-link-color: $body-color;
+$dropdown-link-hover-color: #68c4eb;
+$dropdown-link-hover-bg: $dropdown-bg;
+
+// Card
+$card-bg: #2a2f33;
+$card-border-color: #21262b;
+
+// Modal
+$modal-content-bg: #21262b;
+$modal-header-border-color: #2e3337;
+
+// Theme Colors
+$theme-colors: (
+    "list-bg": #2e3337,
+);
+
+// Fonts
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
