@@ -1,9 +1,9 @@
 node_modules
 .eslintcache
-README.md
 e2e
 .screenshots
 jest-puppeteer.config.js
 .env.development
 .env.production
 build
+.gitignore
