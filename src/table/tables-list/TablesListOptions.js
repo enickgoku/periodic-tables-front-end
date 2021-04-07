@@ -51,6 +51,7 @@ function TablesListOptions(props) {
                     <i className="ri-filter-3-line" />
                 </Dropdown.Toggle>
                 <Dropdown.Menu align="right">
+                    <Dropdown.Header>Filter</Dropdown.Header>
                     <Dropdown.Item onSelect={() => setFilter("all")}>
                         All
                     </Dropdown.Item>
