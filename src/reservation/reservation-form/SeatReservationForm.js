@@ -62,7 +62,9 @@ function SeatReservationForm(props) {
     function handleSeatReservation(event) {
         event.preventDefault();
         seatReservation(reservationId, formData.table_id)
-            .then(() => history.push("/"))
+            .then(() => {
+                history.push("/");
+            })
             .catch(setFormError);
     }
 

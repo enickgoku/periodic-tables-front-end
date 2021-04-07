@@ -64,6 +64,7 @@ function ReservationsList(props) {
           {...props}
           key={index}
           reservation={reservation}
+          setReservationsError={setReservationsError}
         />
       </Col>
   ));
