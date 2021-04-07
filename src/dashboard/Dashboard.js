@@ -1,5 +1,5 @@
 // React + Hooks
-import React, { useState } from "react";
+import React from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 
 // React Components
@@ -11,8 +11,6 @@ import SeatReservationForm from "../reservation/reservation-form/SeatReservation
 import CreateTableForm from "../table/table-form/CreateTableForm";
 import EditTableForm from "../table/table-form/EditTableForm";
 
-import ErrorAlert from "../layout/ErrorAlert";
-
 // React Bootstrap Components
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -21,25 +19,13 @@ import Row from "react-bootstrap/Row";
  * Defines the dashboard page.
  */
 function Dashboard(props) {
-
-  const [dashboardError, setDashboardError] = useState(null);
-
   return (
       <Container fluid>
         <Row className="d-flex flex-column flex-md-row justify-content-md-center">
           <Switch>
             <Route exact={true} path={"/dashboard"}>
-              {dashboardError ? <ErrorAlert error={dashboardError} /> :
-                <>
-                  <TablesList
-                    {...props}
-                    setDashboardError={setDashboardError}
-                   />
-                  <ReservationsList
-                    {...props}
-                    setDashboardError={setDashboardError}
-                  />
-                </>}
+              <TablesList {...props} />
+              <ReservationsList {...props} />
             </Route>
             <Route exact={true} path={"/reservations"}>
               <Redirect to={"/dashboard"} />

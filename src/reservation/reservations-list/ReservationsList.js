@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 // React Components
 import ReservationsListOptions from "./ReservationsListOptions";
 import ReservationCard from "../reservation-card/ReservationCard";
+import ErrorAlert from "../../layout/ErrorAlert";
 
 // React Bootstrap Components
 import Row from "react-bootstrap/Row";
@@ -27,24 +28,29 @@ function ReservationsList(props) {
     dateSetting,
     // setDateSetting,
     // currentTime,
-    // changeDate,
-    setDashboardError
+    // changeDate
   } = props;
 
   const [reservations, setReservations] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [reservationsError, setReservationsError] = useState(null);
 
-  useEffect(loadReservations, [dateSetting, setDashboardError]);
+  useEffect(loadReservations, [dateSetting]);
 
   /**
    * Fetches all reservations by `date`.
    */
   function loadReservations() {
     const abortController = new AbortController();
+    setIsLoading(true);
     setReservations([]);
-    setDashboardError(null);
+    setReservationsError(null);
     listReservations({ date: dateSetting }, abortController.signal)
-      .then(setReservations)
-      .catch(() => setDashboardError());
+      .then((reservations) => {
+        setReservations(reservations);
+        setIsLoading(false);
+      })
+      .catch(setReservationsError);
     return () => abortController.abort();
   }
 
@@ -69,7 +75,9 @@ function ReservationsList(props) {
         refreshReservationList={loadReservations}
       />
       <Row className="d-flex flex-column align-items-center p-0 mt-2">
-        {!reservations.length
+        {reservationsError ? <ErrorAlert error={reservationsError} /> : null}
+        {isLoading ? <h3 className="p-3">Loading...</h3> : null}
+        {!reservations.length && !isLoading
           ? <h3 className="p-3">No Reservations</h3>
           : reservationContent}
       </Row>
