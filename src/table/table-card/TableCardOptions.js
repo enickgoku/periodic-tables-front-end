@@ -58,7 +58,7 @@ function TableCardOptions({ table }) {
           <Modal.Title>Dismiss Reservation</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          You are about to dismiss the reservation from this table. This cannot be undone. Continue?
+          Is this table ready to seat new guests? This cannot be undone. Continue?
         </Modal.Body>
         <Modal.Footer>
           <Button variant="dark" onClick={handleClose}>

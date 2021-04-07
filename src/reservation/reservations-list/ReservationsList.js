@@ -56,7 +56,10 @@ function ReservationsList(props) {
 
   return (
     <Col xs={{ order: 1 }} md={{ span: 4, order: 2 }} lg={4} xl={3}>
-      <ReservationsListOptions {...props} />
+      <ReservationsListOptions
+        {...props}
+        refreshReservationList={loadReservations}
+      />
       <Row className="d-flex flex-column align-items-center p-0 mt-2">
         {reservationsError
           ? <ErrorAlert error={reservationsError} />

@@ -52,7 +52,10 @@ function TablesList() {
     <Col xs={{ order: 2 }} md={{ order: 1 }} className="mb-5">
       <Row className="d-flex justify-content-between align-items-center p-3">
         <h3>{statusDisplay} Tables</h3>
-        <TablesListOptions setFilter={setFilter} />
+        <TablesListOptions
+          setFilter={setFilter}
+          refreshFilteredTables={loadFilteredTables}
+        />
       </Row>
       <Row className="d-flex flex-wrap justify-content-center p-0 mt-2">
         {tablesError ? <ErrorAlert error={tablesError} /> : null}

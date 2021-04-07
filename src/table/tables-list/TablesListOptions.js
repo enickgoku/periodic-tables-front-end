@@ -12,9 +12,17 @@ import Button from "react-bootstrap/Button";
  *  a function used for lifting state to `filterTablesBy` in the `TablesList` component.
  * @returns {JSX.Element}
  */
-function TablesListOptions({ setFilter }) {
+function TablesListOptions(props) {
     return (
         <ButtonGroup>
+            <Button
+                variant="dark"
+                className="border border-list-bg"
+                style={{ fontSize: "1.2rem" }}
+                onClick={() => props.refreshFilteredTables()}
+            >
+                <i className="ri-refresh-line" />
+            </Button>
             <Button
                 variant="dark"
                 className="border border-list-bg"
@@ -32,13 +40,13 @@ function TablesListOptions({ setFilter }) {
                     <i className="ri-filter-3-line" />
                 </Dropdown.Toggle>
                 <Dropdown.Menu align="right">
-                    <Dropdown.Item onSelect={() => setFilter("all")}>
+                    <Dropdown.Item onSelect={() => props.setFilter("all")}>
                         All
                     </Dropdown.Item>
-                    <Dropdown.Item onSelect={() => setFilter("free")}>
+                    <Dropdown.Item onSelect={() => props.setFilter("free")}>
                         Free
                     </Dropdown.Item>
-                    <Dropdown.Item onSelect={() => setFilter("occupied")}>
+                    <Dropdown.Item onSelect={() => props.setFilter("occupied")}>
                         Occupied
                     </Dropdown.Item>
                 </Dropdown.Menu>

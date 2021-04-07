@@ -43,18 +43,18 @@ function Layout() {
    * @param {integer} value
    * the number of days +/- to adjust the `dateSetting`.
    */
-  const handleChangeDateSetting = (value) => 
+  const handleChangeDateSetting = (value) =>
     typeof value === "number"
       ? setDateSetting(incrementDate(value))
       : setDateSetting(currentDate);
 
-    /**
-     * Helper function for `handleChangeDateSetting`.
-     * @param {integer} value
-     * the number of days +/- to adjust the `dateSetting`.
-     */
-     const incrementDate = (value) => 
-     DateTime.fromISO(dateSetting).plus({ days: value }).toISODate();
+  /**
+   * Helper function for `handleChangeDateSetting`.
+   * @param {integer} value
+   * the number of days +/- to adjust the `dateSetting`.
+   */
+  const incrementDate = (value) => 
+    DateTime.fromISO(dateSetting).plus({ days: value }).toISODate();
 
   return (
     <Container fluid>
