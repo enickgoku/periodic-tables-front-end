@@ -4,11 +4,6 @@ import { Redirect, Route, Switch } from "react-router-dom";
 
 // React Components
 import Dashboard from "../dashboard/Dashboard";
-import SeatReservationForm from "../seat/SeatReservationForm";
-import CreateReservationForm from "../reservation/reservation-form/CreateReservationForm";
-import EditReservationForm from "../reservation/reservation-form/EditReservationForm";
-import CreateTableForm from "../table/table-form/CreateTableForm";
-import EditTableForm from "../table/table-form/EditTableForm";
 import NotFound from "./NotFound";
 
 /**
@@ -38,29 +33,8 @@ function Routes(props) {
       <Route exact={true} path="/">
         <Redirect to={"/dashboard"} />
       </Route>
-      <Route exact={true} path="/reservations">
-        <Redirect to={"/dashboard"} />
-      </Route>
-      <Route exact={true} path="/tables">
-        <Redirect to={"/dashboard"} />
-      </Route>
-      <Route path="/dashboard">
+      <Route path={["/reservations", "/tables", "/dashboard"]}>
         <Dashboard {...props} />
-      </Route>
-      <Route path="/reservations/new">
-        <CreateReservationForm {...props} />
-      </Route>
-      <Route path="/reservations/:reservationId/edit">
-        <EditReservationForm {...props} />
-      </Route>
-      <Route path={`/reservations/:reservationId/seat`}>
-        <SeatReservationForm />
-      </Route>
-      <Route path="/tables/new">
-        <CreateTableForm />
-      </Route>
-      <Route path="/tables/:tableId/edit">
-        <EditTableForm />
       </Route>
       <Route>
         <NotFound />

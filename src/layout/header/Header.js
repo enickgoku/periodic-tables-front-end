@@ -20,7 +20,7 @@ function Header(props) {
    */
   const formalDate =
     props.currentDate === props.dateSetting
-      ? DateTime.fromISO(props.currentDate).toFormat("DDDD")
+      ? DateTime.fromISO(props.dateSetting).toFormat("DDDD")
       : DateTime.fromISO(props.dateSetting).toFormat("DDDD");
 
   /**

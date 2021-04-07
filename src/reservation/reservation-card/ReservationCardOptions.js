@@ -12,26 +12,26 @@ import Button from "react-bootstrap/Button";
  * @returns {JSX.Element}
  */
 function ReservationCardOptions({ reservation }) {
-    return (
-      <ButtonGroup vertical>
-        <Button
-          variant="dark"
-          className="d-flex align-items-center text-muted"
-          style={{ fontSize: "1.2rem" }}
-          href={`/reservations/${reservation.reservation_id}/seat`}
-        >
-          <i className="ri-map-pin-user-fill" title="Change Status" />
-        </Button>
-        <Button
-          variant="dark"
-          className="d-flex align-items-center text-muted"
-          style={{ fontSize: "1.2rem" }}
-          href={`/reservations/${reservation.reservation_id}/edit`}
-        >
-          <i className="ri-pencil-line" title="Edit Reservation" />
-        </Button>
-      </ButtonGroup>
-    );
+  return (
+    <ButtonGroup vertical>
+      <Button
+        variant="dark"
+        className="d-flex align-items-center text-muted"
+        style={{ fontSize: "1.2rem" }}
+        href={`/reservations/${reservation.reservation_id}/seat`}
+      >
+        <i className="ri-map-pin-user-fill" title="Seat Reservation" />
+      </Button>
+      <Button
+        variant="dark"
+        className="d-flex align-items-center text-muted"
+        style={{ fontSize: "1.2rem" }}
+        href={`/reservations/${reservation.reservation_id}/edit`}
+      >
+        <i className="ri-pencil-line" title="Edit Reservation" />
+      </Button>
+    </ButtonGroup>
+  );
 }
 
 export default ReservationCardOptions;

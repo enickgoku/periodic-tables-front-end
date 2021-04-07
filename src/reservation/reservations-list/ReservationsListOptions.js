@@ -43,14 +43,24 @@ function ReservationsListOptions(props) {
                         <i className="ri-arrow-right-s-line" />
                     </Button>
                 </ButtonGroup>
-                <Button
-                    variant="dark"
-                    className="border border-list-bg"
-                    style={{ fontSize: "1.2rem" }}
-                    href={`/reservations/new`}
-                >
-                    <i className="ri-add-line" />
-                </Button>
+                <ButtonGroup>
+                    <Button
+                        variant="dark"
+                        className="border border-list-bg"
+                        style={{ fontSize: "1.2rem" }}
+                        onClick={() => props.refreshReservationList()}
+                    >
+                        <i className="ri-refresh-line" />
+                    </Button>
+                    <Button
+                        variant="dark"
+                        className="border border-list-bg"
+                        style={{ fontSize: "1.2rem" }}
+                        href={`/reservations/new`}
+                    >
+                        <i className="ri-add-line" />
+                    </Button>
+                </ButtonGroup>
             </Col>
         </Row>
     );

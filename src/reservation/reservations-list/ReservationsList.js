@@ -1,10 +1,9 @@
 // React + Hooks
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 
 // React Components
 import ReservationsListOptions from "./ReservationsListOptions";
 import ReservationCard from "../reservation-card/ReservationCard";
-import ErrorAlert from "../../layout/ErrorAlert";
 
 // React Bootstrap Components
 import Row from "react-bootstrap/Row";
@@ -22,10 +21,19 @@ import { listReservations } from "../../utils/api";
  * @returns {JSX.Element} 
  */
 function ReservationsList(props) {
-  const [reservations, setReservations] = useState([]);
-  const [reservationsError, setReservationsError] = useState(null);
+  
+  let {
+    // currentDate,
+    dateSetting,
+    // setDateSetting,
+    // currentTime,
+    // changeDate,
+    setDashboardError
+  } = props;
 
-  useEffect(loadReservations, [props.dateSetting]);
+  const [reservations, setReservations] = useState([]);
+
+  useEffect(loadReservations, [dateSetting, setDashboardError]);
 
   /**
    * Fetches all reservations by `date`.
@@ -33,10 +41,10 @@ function ReservationsList(props) {
   function loadReservations() {
     const abortController = new AbortController();
     setReservations([]);
-    setReservationsError(null);
-    listReservations({ date: props.dateSetting }, abortController.signal)
+    setDashboardError(null);
+    listReservations({ date: dateSetting }, abortController.signal)
       .then(setReservations)
-      .catch(setReservationsError);
+      .catch(() => setDashboardError());
     return () => abortController.abort();
   }
 
@@ -47,21 +55,21 @@ function ReservationsList(props) {
     reservations.map((reservation, index) => (
       <Col key={index}>
         <ReservationCard
+          {...props}
           key={index}
           reservation={reservation}
-          currentDate={props.currentDate}
         />
       </Col>
   ));
 
   return (
     <Col xs={{ order: 1 }} md={{ span: 4, order: 2 }} lg={4} xl={3}>
-      <ReservationsListOptions {...props} />
+      <ReservationsListOptions
+        {...props}
+        refreshReservationList={loadReservations}
+      />
       <Row className="d-flex flex-column align-items-center p-0 mt-2">
-        {reservationsError
-          ? <ErrorAlert error={reservationsError} />
-          : null}
-        {!reservations.length && !reservationsError
+        {!reservations.length
           ? <h3 className="p-3">No Reservations</h3>
           : reservationContent}
       </Row>
