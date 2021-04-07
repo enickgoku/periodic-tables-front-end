@@ -77,7 +77,7 @@ function TablesList(props) {
       </Row>
       <Row className="d-flex flex-wrap justify-content-center p-0 mt-2">
         {tablesError ? <ErrorAlert error={tablesError} /> : null}
-        {isLoading ? <h3 className="p-3">Loading...</h3> : null}
+        {isLoading ? <h5 className="p-3">LOADING...</h5> : null}
         {!tables.length && !isLoading
           ? <h3 className="p-3">No Tables</h3>
           : tableContent}

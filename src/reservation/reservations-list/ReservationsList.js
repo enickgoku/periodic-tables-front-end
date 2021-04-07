@@ -76,7 +76,7 @@ function ReservationsList(props) {
       />
       <Row className="d-flex flex-column align-items-center p-0 mt-2">
         {reservationsError ? <ErrorAlert error={reservationsError} /> : null}
-        {isLoading ? <h3 className="p-3">Loading...</h3> : null}
+        {isLoading ? <h5 className="p-3">LOADING...</h5> : null}
         {!reservations.length && !isLoading
           ? <h3 className="p-3">No Reservations</h3>
           : reservationContent}
