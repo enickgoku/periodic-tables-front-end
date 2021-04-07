@@ -15,7 +15,16 @@ import { DateTime } from "luxon";
  *  the value of `dateSetting` from the `Layout` component.
  * @returns {JSX.Element}
  */
-function ReservationCardBody({ reservation, currentDate }) {
+function ReservationCardBody(props) {
+
+  let {
+    currentDate,
+    // dateSetting,
+    // setDateSetting,
+    // currentTime,
+    // changeDate,
+    reservation
+  } = props;
   
     /**
      * The `reservation_time` displayed in `ex. 8:00 PM` format.

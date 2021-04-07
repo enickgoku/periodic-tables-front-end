@@ -1,9 +1,14 @@
 // React + Hooks
-import React from "react";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 // React Bootstrap Components
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+
+// API
+import { deleteReservation } from "../../utils/api";
 
 /**
  * Displays the reservation status and edit options for each `ReservationCard`.
@@ -11,26 +16,92 @@ import Button from "react-bootstrap/Button";
  *  an object containing reservation data.
  * @returns {JSX.Element}
  */
-function ReservationCardOptions({ reservation }) {
+function ReservationCardOptions(props) {
+
+  let {
+    // currentDate,
+    // dateSetting,
+    // setDateSetting,
+    // currentTime,
+    // changeDate,
+    reservation,
+    setReservationsError
+  } = props;
+
+  const history = useHistory();
+
+  const [showConfirmation, setShowConfirmation] = useState(false);
+
+  const handleClose = () => setShowConfirmation(false);
+  const handleShow = () => setShowConfirmation(true);
+
+  /**
+  * Deletes the current reservation from the database.
+  */
+  function handleReservationDelete(event) {
+    event.preventDefault();
+    deleteReservation(reservation.reservation_id)
+        .then(() => {
+          handleClose();
+          history.push("/");
+        })
+        .catch(() => setReservationsError());
+  }
+
   return (
-    <ButtonGroup vertical>
-      <Button
-        variant="dark"
-        className="d-flex align-items-center text-muted"
-        style={{ fontSize: "1.2rem" }}
-        href={`/reservations/${reservation.reservation_id}/seat`}
+    <>
+      <ButtonGroup vertical>
+        {reservation.status === "booked"
+          ? <Button
+              variant="dark"
+              className="d-flex align-items-center text-muted"
+              style={{ fontSize: "1.2rem" }}
+              href={`/reservations/${reservation.reservation_id}/seat`}
+            >
+              <i className="ri-map-pin-user-fill" title="Seat Reservation" />
+            </Button>
+          : null
+        }
+        {reservation.status === "seated"
+          ? <Button
+              variant="dark"
+              className="d-flex align-items-center text-muted"
+              style={{ fontSize: "1.2rem" }}
+              onClick={handleShow}
+            >
+              <i className="ri-close-circle-fill" title="Finished" />
+            </Button>
+          : null
+        }
+        <Button
+          variant="dark"
+          className="d-flex align-items-center text-muted"
+          style={{ fontSize: "1.2rem" }}
+          href={`/reservations/${reservation.reservation_id}/edit`}
+        >
+          <i className="ri-pencil-line" title="Edit Reservation" />
+        </Button>
+      </ButtonGroup>
+      <Modal
+          show={showConfirmation}
+          onHide={handleClose}
       >
-        <i className="ri-map-pin-user-fill" title="Seat Reservation" />
-      </Button>
-      <Button
-        variant="dark"
-        className="d-flex align-items-center text-muted"
-        style={{ fontSize: "1.2rem" }}
-        href={`/reservations/${reservation.reservation_id}/edit`}
-      >
-        <i className="ri-pencil-line" title="Edit Reservation" />
-      </Button>
-    </ButtonGroup>
+        <Modal.Header>
+        <Modal.Title>Delete Reservation</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+        You are about to mark this reservation as finished. This cannot be undone. Continue?
+        </Modal.Body>
+        <Modal.Footer>
+        <Button variant="dark" onClick={handleClose}>
+            Cancel
+        </Button>
+        <Button variant="danger" onClick={handleReservationDelete}>
+            Continue
+        </Button>
+        </Modal.Footer>
+    </Modal>
+  </>
   );
 }
 

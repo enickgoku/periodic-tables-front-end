@@ -64,6 +64,7 @@ function ReservationsList(props) {
           {...props}
           key={index}
           reservation={reservation}
+          setReservationsError={setReservationsError}
         />
       </Col>
   ));
@@ -72,11 +73,11 @@ function ReservationsList(props) {
     <Col xs={{ order: 1 }} md={{ span: 4, order: 2 }} lg={4} xl={3}>
       <ReservationsListOptions
         {...props}
-        refreshReservationList={loadReservations}
+        reloadReservationList={loadReservations}
       />
       <Row className="d-flex flex-column align-items-center p-0 mt-2">
         {reservationsError ? <ErrorAlert error={reservationsError} /> : null}
-        {isLoading ? <h3 className="p-3">Loading...</h3> : null}
+        {isLoading ? <h5 className="p-3">LOADING...</h5> : null}
         {!reservations.length && !isLoading
           ? <h3 className="p-3">No Reservations</h3>
           : reservationContent}

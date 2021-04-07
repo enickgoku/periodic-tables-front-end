@@ -21,7 +21,16 @@ import { DateTime } from "luxon";
  *  the value of `dateSetting` from the `Layout` component.
  * @returns {JSX.Element}
  */
-function CreateReservationForm({ currentDate, currentTime, setDateSetting }) {
+function CreateReservationForm(props) {
+
+    let {
+      currentDate,
+    //   dateSetting,
+      setDateSetting,
+      currentTime,
+    //   changeDate
+    } = props;
+
     const history = useHistory();
 
     const [formData, setFormData] = useState({});

@@ -14,22 +14,33 @@ import Card from "react-bootstrap/Card";
  *  an object containing table data.
  * @returns {JSX.Element}
  */
-function TableCard({ table }) {
-    const style =
-      table.reservation_id
-        ? "border-danger"
-        : "border-success";
+function TableCard(props) {
 
-    return (
-      <Card className={`d-flex flex-row ${style} my-2`}>
-        <Card.Body className="d-flex flex-column p-0">
-          <TableCardBody table={table} />
-        </Card.Body>
-        <Card.Footer className="d-flex justify-content-center p-0">
-          <TableCardOptions table={table} />
-        </Card.Footer>
-      </Card>
-    );
+  let {
+    // currentDate,
+    // dateSetting,
+    // setDateSetting,
+    // currentTime,
+    // changeDate,
+    table,
+    // setTablesError
+  } = props;
+
+  const style =
+    table.reservation_id
+      ? "border-danger"
+      : "border-success";
+
+  return (
+    <Card className={`d-flex flex-row ${style} my-2`}>
+      <Card.Body className="d-flex flex-column p-0">
+        <TableCardBody {...props} />
+      </Card.Body>
+      <Card.Footer className="d-flex justify-content-center p-0">
+        <TableCardOptions {...props} />
+      </Card.Footer>
+    </Card>
+  );
 }
 
 export default TableCard;
