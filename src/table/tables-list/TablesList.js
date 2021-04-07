@@ -1,10 +1,9 @@
 // React + Hooks
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 
 // React Components
 import TablesListOptions from "./TablesListOptions";
 import TableCard from "../table-card/TableCard";
-import ErrorAlert from "../../layout/ErrorAlert";
 
 // React Bootstrap Components
 import Row from "react-bootstrap/Row";
@@ -17,12 +16,21 @@ import { listTables } from "../../utils/api";
  * Defines the list of fetched tables.
  * @returns {JSX.Element}
  */
-function TablesList() {
+function TablesList(props) {
+
+  let {
+    // currentDate,
+    dateSetting,
+    // setDateSetting,
+    // currentTime,
+    // changeDate,
+    setDashboardError
+  } = props;
+
   const [tables, setTables] = useState([]);
-  const [tablesError, setTablesError] = useState(null);
   const [filter, setFilter] = useState("all");
 
-  useEffect(loadFilteredTables, [filter]);
+  useEffect(loadFilteredTables, [filter, setDashboardError, dateSetting]);
 
   /**
    * Fetches all tables by `reservation_id = null || !null`.
@@ -30,10 +38,10 @@ function TablesList() {
   function loadFilteredTables() {
     const abortController = new AbortController();
     setTables([]);
-    setTablesError(null);
+    setDashboardError(null);
     listTables({ status: filter }, abortController.signal)
       .then(setTables)
-      .catch(setTablesError);
+      .catch(() => setDashboardError());
     return () => abortController.abort();
   }
 
@@ -58,8 +66,7 @@ function TablesList() {
         />
       </Row>
       <Row className="d-flex flex-wrap justify-content-center p-0 mt-2">
-        {tablesError ? <ErrorAlert error={tablesError} /> : null}
-        {!tables.length && !tablesError ? <h3 className="p-3">No Tables</h3> : tableContent}
+        {!tables.length ? <h3 className="p-3">No Tables</h3> : tableContent}
       </Row>
     </Col>
   );

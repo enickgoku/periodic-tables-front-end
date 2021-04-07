@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 
 // React Components
-import ErrorAlert from "../layout/ErrorAlert";
+import ErrorAlert from "../../layout/ErrorAlert";
 
 // React Bootstrap Components
 import Col from "react-bootstrap/Col";
@@ -12,12 +12,21 @@ import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Button from "react-bootstrap/Button";
 
 // Utils
-import { listTables, seatReservation } from "../utils/api";
+import { listTables, seatReservation } from "../../utils/api";
 
 /**
 * The form component used to assign an existing `reservation` to an existing `table`
 */
-function SeatReservationForm() {
+function SeatReservationForm(props) {
+
+    let {
+        currentDate,
+        // dateSetting,
+        setDateSetting,
+        // currentTime,
+        // changeDate
+    } = props;
+
     const history = useHistory();
     const { reservationId } = useParams();
 
@@ -53,7 +62,10 @@ function SeatReservationForm() {
     function handleSeatReservation(event) {
         event.preventDefault();
         seatReservation(reservationId, formData.table_id)
-            .then(() => history.push("/"))
+            .then(() => {
+                setDateSetting(currentDate);
+                history.push("/");
+            })
             .catch(setFormError);
     }
 
