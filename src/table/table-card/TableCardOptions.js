@@ -35,8 +35,8 @@ function TableCardOptions(props) {
   const handleClose = () => setShowConfirmation(false);
   const handleShow = () => setShowConfirmation(true);
 
-  function handleReservationDismiss() {
-    dismissReservation(table.table_id)
+  function handleDismissReservation() {
+    dismissReservation(table.table_id, table.reservation_id)
       .then(() => history.push("/"))
       .catch(() => setTablesError());
   }
@@ -78,7 +78,7 @@ function TableCardOptions(props) {
           <Button variant="dark" onClick={handleClose}>
             Cancel
           </Button>
-          <Button variant="danger" onClick={handleReservationDismiss}>
+          <Button variant="danger" onClick={handleDismissReservation}>
             Continue
           </Button>
         </Modal.Footer>

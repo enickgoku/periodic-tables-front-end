@@ -32,10 +32,11 @@ function ReservationsList(props) {
   } = props;
 
   const [reservations, setReservations] = useState([]);
+  const [reservationsFilter, setReservationsFilter] = useState("all");
   const [isLoading, setIsLoading] = useState(false);
   const [reservationsError, setReservationsError] = useState(null);
 
-  useEffect(loadReservations, [dateSetting]);
+  useEffect(loadReservations, [dateSetting, reservationsFilter]);
 
   /**
    * Fetches all reservations by `date`.
@@ -45,7 +46,7 @@ function ReservationsList(props) {
     setIsLoading(true);
     setReservations([]);
     setReservationsError(null);
-    listReservations({ date: dateSetting }, abortController.signal)
+    listReservations({ date: dateSetting, phase: reservationsFilter }, abortController.signal)
       .then((reservations) => {
         setReservations(reservations);
         setIsLoading(false);
@@ -74,10 +75,11 @@ function ReservationsList(props) {
       <ReservationsListOptions
         {...props}
         reloadReservationList={loadReservations}
+        setReservationsFilter={setReservationsFilter}
       />
       <Row className="d-flex flex-column align-items-center p-0 mt-2">
         {reservationsError ? <ErrorAlert error={reservationsError} /> : null}
-        {isLoading ? <h5 className="p-3">LOADING...</h5> : null}
+        {isLoading && !reservationsError ? <img src={process.env.PUBLIC_URL + "/loading.png"} alt="Loading..." /> : null}
         {!reservations.length && !isLoading
           ? <h3 className="p-3">No Reservations</h3>
           : reservationContent}

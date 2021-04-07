@@ -14,7 +14,7 @@ import Row from "react-bootstrap/Row";
 import { DateTime, Settings } from "luxon";
 
 // Styles
-import "./styles/Layout.css"
+import "./styles/layout/Layout.css";
 import "./styles/scss/custom.scss";
 
 // Set the system time zone where the restaurant resides.

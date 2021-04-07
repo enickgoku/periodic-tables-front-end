@@ -8,7 +8,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
 // API
-import { deleteReservation } from "../../utils/api";
+import { finishReservation } from "../../utils/api";
 
 /**
  * Displays the reservation status and edit options for each `ReservationCard`.
@@ -38,9 +38,9 @@ function ReservationCardOptions(props) {
   /**
   * Deletes the current reservation from the database.
   */
-  function handleReservationDelete(event) {
+  function handleFinishReservation(event) {
     event.preventDefault();
-    deleteReservation(reservation.reservation_id)
+    finishReservation(reservation.reservation_id, "finish")
         .then(() => {
           handleClose();
           history.push("/");
@@ -96,7 +96,7 @@ function ReservationCardOptions(props) {
         <Button variant="dark" onClick={handleClose}>
             Cancel
         </Button>
-        <Button variant="danger" onClick={handleReservationDelete}>
+        <Button variant="danger" onClick={handleFinishReservation}>
             Continue
         </Button>
         </Modal.Footer>

@@ -229,7 +229,7 @@ export async function deleteTable(tableId) {
  * @returns {Promise<[reservation]>}
  *  a promise that resolves to a successful `PUT` request.
  */
-export async function seatReservation(reservation_id, tableId) {
+export async function occupyTable(reservation_id, tableId) {
   const url = new URL(`${API_BASE_URL}/tables/${tableId}/seat`);
   const options = {
     method: "PUT",
@@ -246,11 +246,22 @@ export async function seatReservation(reservation_id, tableId) {
  * @returns {Promise}
  *  a promise that resolves to a successful `DELETE` request.
  */
-export async function dismissReservation(table_id) {
-  const url = new URL(`${API_BASE_URL}/tables/${table_id}/seat`);
+export async function dismissReservation(tableId, reservationId) {
+  const url = new URL(`${API_BASE_URL}/tables/${tableId}/seat`);
   const options = {
     method: "DELETE",
-    headers
+    headers,
+    body: JSON.stringify({ data: { reservationId }})
+  };
+  return await fetchJson(url, options);
+}
+
+export async function finishReservation(reservationId, status) {
+  const url = new URL(`${API_BASE_URL}/reservations/${reservationId}/status`);
+  const options = {
+    method: "PUT",
+    headers,
+    body: JSON.stringify({ data: { status }})
   };
   return await fetchJson(url, options);
 }

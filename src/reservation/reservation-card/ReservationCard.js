@@ -28,13 +28,18 @@ function ReservationCard(props) {
     setReservationsError
   } = props;
 
-  const style =
-    reservation.status === "booked"
+  const borderStyle =
+    reservation.status === "booked" || reservation.status === "finished"
       ? "border-list-bg"
       : "border-danger";
 
+  const finishedStyle =
+    reservation.status === "finished"
+      ? "40%"
+      : "100%";
+
   return (
-    <Card className={`d-flex flex-row ${style} my-2`}>
+    <Card className={`d-flex flex-row ${borderStyle} my-2`} style={{ opacity: finishedStyle }}>
       <Card.Body className="col d-flex flex-column p-0">
         <ReservationCardBody {...props} />
       </Card.Body>

@@ -41,11 +41,13 @@ function ReservationCardBody(props) {
     return (
       <ListGroup>
         <ListGroup.Item className="d-flex flex-column bg-list-bg p-2">
-          <small>Reserved For:</small>
+          <small>{!reservation.current_table ? "Reserved For: " : "Current Table: "}</small>
           <span>
-            {currentDate === reservation.reservation_date
-              ? `Today at ${formalTime}`
-              : `${formalDate} at ${formalTime}`}
+            {!reservation.current_table
+            ? currentDate === reservation.reservation_date
+                ? `Today at ${formalTime}`
+                : `${formalDate} at ${formalTime}`
+            : `${reservation.current_table}`}
           </span>
         </ListGroup.Item>
         <ListGroup.Item className="d-flex flex-column bg-list-bg p-2">

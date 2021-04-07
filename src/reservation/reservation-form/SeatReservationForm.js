@@ -12,7 +12,7 @@ import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Button from "react-bootstrap/Button";
 
 // Utils
-import { listTables, seatReservation } from "../../utils/api";
+import { listTables, occupyTable } from "../../utils/api";
 
 /**
 * The form component used to assign an existing `reservation` to an existing `table`
@@ -61,7 +61,7 @@ function SeatReservationForm(props) {
     */
     function handleSeatReservation(event) {
         event.preventDefault();
-        seatReservation(reservationId, formData.table_id)
+        occupyTable(reservationId, formData.table_id)
             .then(() => {
                 history.push("/");
             })

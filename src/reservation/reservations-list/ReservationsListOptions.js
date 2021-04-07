@@ -4,6 +4,7 @@ import React from "react";
 // React Bootstrap Components
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Dropdown from "react-bootstrap/Dropdown";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Button from "react-bootstrap/Button";
 
@@ -21,7 +22,8 @@ function ReservationsListOptions(props) {
       setDateSetting,
     //   currentTime,
       changeDate,
-      reloadReservationList
+      reloadReservationList,
+      setReservationsFilter
     } = props;
 
     return (
@@ -70,6 +72,31 @@ function ReservationsListOptions(props) {
                     >
                         <i className="ri-add-line" />
                     </Button>
+                    <Dropdown as={ButtonGroup}>
+                        <Dropdown.Toggle
+                            variant="dark"
+                            className="border border-list-bg"
+                            style={{ fontSize: "1.2rem" }}
+                        >
+                            <i className="ri-filter-3-line" />
+                        </Dropdown.Toggle>
+                        <Dropdown.Menu align="right">
+                            <Dropdown.Header>Filter</Dropdown.Header>
+                            <Dropdown.Item onSelect={() => setReservationsFilter("all")}>
+                                All
+                            </Dropdown.Item>
+                            <Dropdown.Item onSelect={() => setReservationsFilter("booked")}>
+                                Booked
+                            </Dropdown.Item>
+                            <Dropdown.Item onSelect={() => setReservationsFilter("seated")}>
+                                Seated
+                            </Dropdown.Item>
+                            <Dropdown.Header>History</Dropdown.Header>
+                            <Dropdown.Item onSelect={() => setReservationsFilter("finished")}>
+                                Finished
+                            </Dropdown.Item>
+                        </Dropdown.Menu>
+                    </Dropdown>
                 </ButtonGroup>
             </Col>
         </Row>
