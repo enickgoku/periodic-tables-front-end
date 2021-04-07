@@ -14,6 +14,16 @@ import Button from "react-bootstrap/Button";
  * @returns {JSX.Element}
  */
 function ReservationsListOptions(props) {
+
+    let {
+      currentDate,
+    //   dateSetting,
+      setDateSetting,
+    //   currentTime,
+      changeDate,
+      reloadReservationList
+    } = props;
+
     return (
         <Row className="p-3">
             <Col xs={12} className="d-flex justify-content-between p-0">
@@ -22,7 +32,7 @@ function ReservationsListOptions(props) {
                         variant="dark"
                         className="border border-list-bg"
                         style={{ fontSize: "1.2rem" }}
-                        onClick={() => props.changeDate(-1)}
+                        onClick={() => changeDate(-1)}
                     >
                         <i className="ri-arrow-left-s-line" />
                     </Button>
@@ -30,7 +40,7 @@ function ReservationsListOptions(props) {
                         variant="dark"
                         className="border border-list-bg"
                         style={{ fontSize: "1.2rem" }}
-                        onClick={() => props.setDateSetting(props.currentDate)}
+                        onClick={() => setDateSetting(currentDate)}
                     >
                         <i className="ri-home-line" />
                     </Button>
@@ -38,7 +48,7 @@ function ReservationsListOptions(props) {
                         variant="dark"
                         className="border border-list-bg"
                         style={{ fontSize: "1.2rem" }}
-                        onClick={() => props.changeDate(1)}
+                        onClick={() => changeDate(1)}
                     >
                         <i className="ri-arrow-right-s-line" />
                     </Button>
@@ -48,7 +58,7 @@ function ReservationsListOptions(props) {
                         variant="dark"
                         className="border border-list-bg"
                         style={{ fontSize: "1.2rem" }}
-                        onClick={() => props.refreshReservationList()}
+                        onClick={() => reloadReservationList()}
                     >
                         <i className="ri-refresh-line" />
                     </Button>

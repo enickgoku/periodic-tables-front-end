@@ -13,13 +13,24 @@ import Button from "react-bootstrap/Button";
  * @returns {JSX.Element}
  */
 function TablesListOptions(props) {
+
+    let {
+    //   currentDate,
+    //   dateSetting,
+    //   setDateSetting,
+    //   currentTime,
+    //   changeDate,
+      setFilter,
+      refreshFilteredTables
+    } = props;
+
     return (
         <ButtonGroup>
             <Button
                 variant="dark"
                 className="border border-list-bg"
                 style={{ fontSize: "1.2rem" }}
-                onClick={() => props.refreshFilteredTables()}
+                onClick={() => refreshFilteredTables()}
             >
                 <i className="ri-refresh-line" />
             </Button>
@@ -40,13 +51,13 @@ function TablesListOptions(props) {
                     <i className="ri-filter-3-line" />
                 </Dropdown.Toggle>
                 <Dropdown.Menu align="right">
-                    <Dropdown.Item onSelect={() => props.setFilter("all")}>
+                    <Dropdown.Item onSelect={() => setFilter("all")}>
                         All
                     </Dropdown.Item>
-                    <Dropdown.Item onSelect={() => props.setFilter("free")}>
+                    <Dropdown.Item onSelect={() => setFilter("free")}>
                         Free
                     </Dropdown.Item>
-                    <Dropdown.Item onSelect={() => props.setFilter("occupied")}>
+                    <Dropdown.Item onSelect={() => setFilter("occupied")}>
                         Occupied
                     </Dropdown.Item>
                 </Dropdown.Menu>

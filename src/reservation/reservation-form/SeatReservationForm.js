@@ -19,13 +19,13 @@ import { listTables, seatReservation } from "../../utils/api";
 */
 function SeatReservationForm(props) {
 
-    let {
-        currentDate,
-        // dateSetting,
-        setDateSetting,
-        // currentTime,
-        // changeDate
-    } = props;
+    // let {
+    //     currentDate,
+    //     dateSetting,
+    //     setDateSetting,
+    //     currentTime,
+    //     changeDate
+    // } = props;
 
     const history = useHistory();
     const { reservationId } = useParams();
@@ -62,10 +62,7 @@ function SeatReservationForm(props) {
     function handleSeatReservation(event) {
         event.preventDefault();
         seatReservation(reservationId, formData.table_id)
-            .then(() => {
-                setDateSetting(currentDate);
-                history.push("/");
-            })
+            .then(() => history.push("/"))
             .catch(setFormError);
     }
 

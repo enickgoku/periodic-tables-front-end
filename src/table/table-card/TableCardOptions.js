@@ -1,5 +1,6 @@
 // React + Hooks
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 // React Bootstrap Components
 import ButtonGroup from "react-bootstrap/ButtonGroup";
@@ -15,7 +16,20 @@ import { dismissReservation } from "../../utils/api";
  *  an object containing table data.
  * @returns {JSX.Element}
  */
-function TableCardOptions({ table }) {
+function TableCardOptions(props) {
+
+  let {
+    // currentDate,
+    // dateSetting,
+    // setDateSetting,
+    // currentTime,
+    // changeDate,
+    table,
+    setTablesError
+  } = props;
+
+  const history = useHistory();
+
   const [showConfirmation, setShowConfirmation] = useState(false);
 
   const handleClose = () => setShowConfirmation(false);
@@ -23,8 +37,8 @@ function TableCardOptions({ table }) {
 
   function handleReservationDismiss() {
     dismissReservation(table.table_id)
-      .then(() => window.location.reload())
-      .catch((error) => window.alert(error));
+      .then(() => history.push("/"))
+      .catch(() => setTablesError());
   }
 
   return (

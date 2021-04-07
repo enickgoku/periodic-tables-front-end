@@ -56,7 +56,11 @@ function TablesList(props) {
    */
   const tableContent = tables.map((table, index) => (
     <Col key={index} sm={6} lg={4} xl={3}>
-      <TableCard table={table} />
+      <TableCard
+        {...props}
+        table={table}
+        setTablesError={setTablesError}  
+      />
     </Col>
   ));
 

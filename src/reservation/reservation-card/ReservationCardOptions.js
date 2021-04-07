@@ -11,7 +11,17 @@ import Button from "react-bootstrap/Button";
  *  an object containing reservation data.
  * @returns {JSX.Element}
  */
-function ReservationCardOptions({ reservation }) {
+function ReservationCardOptions(props) {
+
+  let {
+    // currentDate,
+    // dateSetting,
+    // setDateSetting,
+    // currentTime,
+    // changeDate,
+    reservation
+  } = props;
+
   return (
     <ButtonGroup vertical>
       <Button

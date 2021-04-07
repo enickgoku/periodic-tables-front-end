@@ -16,17 +16,27 @@ import Card from "react-bootstrap/Card";
  *  the value of `dateSetting` from the `Layout` component.
  * @returns {JSX.Element}
  */
-function ReservationCard({ reservation, currentDate }) {
-      return (
-      <Card className="d-flex flex-row border-card-border my-2">
-        <Card.Body className="col d-flex flex-column p-0">
-          <ReservationCardBody reservation={reservation} currentDate={currentDate} />
-        </Card.Body>
-        <Card.Footer className="d-flex justify-content-center p-0">
-          <ReservationCardOptions reservation={reservation} />
-        </Card.Footer>
-      </Card>
-    );
+function ReservationCard(props) {
+
+  // let {
+  //   currentDate,
+  //   dateSetting,
+  //   setDateSetting,
+  //   currentTime,
+  //   changeDate,
+  //   reservation
+  // } = props;
+
+  return (
+    <Card className="d-flex flex-row border-card-border my-2">
+      <Card.Body className="col d-flex flex-column p-0">
+        <ReservationCardBody {...props} />
+      </Card.Body>
+      <Card.Footer className="d-flex justify-content-center p-0">
+        <ReservationCardOptions {...props} />
+      </Card.Footer>
+    </Card>
+  );
 }
 
 export default ReservationCard;

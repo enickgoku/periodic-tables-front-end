@@ -72,7 +72,7 @@ function ReservationsList(props) {
     <Col xs={{ order: 1 }} md={{ span: 4, order: 2 }} lg={4} xl={3}>
       <ReservationsListOptions
         {...props}
-        refreshReservationList={loadReservations}
+        reloadReservationList={loadReservations}
       />
       <Row className="d-flex flex-column align-items-center p-0 mt-2">
         {reservationsError ? <ErrorAlert error={reservationsError} /> : null}

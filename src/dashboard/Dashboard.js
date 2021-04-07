@@ -19,6 +19,15 @@ import Row from "react-bootstrap/Row";
  * Defines the dashboard page.
  */
 function Dashboard(props) {
+
+  // let {
+  //   currentDate,
+  //   dateSetting,
+  //   setDateSetting,
+  //   currentTime,
+  //   changeDate
+  // } = props;
+
   return (
       <Container fluid>
         <Row className="d-flex flex-column flex-md-row justify-content-md-center">

@@ -26,7 +26,16 @@ import { DateTime } from "luxon";
  *  a function used to lift state to `dateSetting` in the `Layout` component.
  * @returns {JSX.Element}
  */
-function EditReservationForm({ currentDate, currentTime, changeDate }) {
+function EditReservationForm(props) {
+
+    let {
+      currentDate,
+    //   dateSetting,
+    //   setDateSetting,
+      currentTime,
+      changeDate
+    } = props;
+
     const history = useHistory();
     const { reservationId } = useParams();
 
