@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 // React Components
 import TablesListOptions from "./TablesListOptions";
 import TableCard from "../table-card/TableCard";
+import ErrorAlert from "../../layout/ErrorAlert";
 
 // React Bootstrap Components
 import Row from "react-bootstrap/Row";
@@ -18,30 +19,35 @@ import { listTables } from "../../utils/api";
  */
 function TablesList(props) {
 
-  let {
-    // currentDate,
-    dateSetting,
-    // setDateSetting,
-    // currentTime,
-    // changeDate,
-    setDashboardError
-  } = props;
+  // let {
+  //   currentDate,
+  //   dateSetting,
+  //   setDateSetting,
+  //   currentTime,
+  //   changeDate
+  // } = props;
 
   const [tables, setTables] = useState([]);
   const [filter, setFilter] = useState("all");
+  const [isLoading, setIsLoading] = useState(false);
+  const [tablesError, setTablesError] = useState(null);
 
-  useEffect(loadFilteredTables, [filter, setDashboardError, dateSetting]);
+  useEffect(loadFilteredTables, [filter]);
 
   /**
    * Fetches all tables by `reservation_id = null || !null`.
    */
   function loadFilteredTables() {
     const abortController = new AbortController();
+    setIsLoading(true);
     setTables([]);
-    setDashboardError(null);
+    setTablesError(null);
     listTables({ status: filter }, abortController.signal)
-      .then(setTables)
-      .catch(() => setDashboardError());
+      .then((tables) => {
+        setTables(tables);
+        setIsLoading(false);
+      })
+      .catch(setTablesError);
     return () => abortController.abort();
   }
 
@@ -66,7 +72,11 @@ function TablesList(props) {
         />
       </Row>
       <Row className="d-flex flex-wrap justify-content-center p-0 mt-2">
-        {!tables.length ? <h3 className="p-3">No Tables</h3> : tableContent}
+        {tablesError ? <ErrorAlert error={tablesError} /> : null}
+        {isLoading ? <h3 className="p-3">Loading...</h3> : null}
+        {!tables.length && !isLoading
+          ? <h3 className="p-3">No Tables</h3>
+          : tableContent}
       </Row>
     </Col>
   );
