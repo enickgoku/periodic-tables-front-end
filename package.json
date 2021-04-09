@@ -9,6 +9,9 @@
   },
   "private": true,
   "dependencies": {
+    "@testing-library/jest-dom": "^5.11.9",
+    "@testing-library/react": "^11.2.3",
+    "@testing-library/user-event": "^12.6.0",
     "@babel/core": "^7.13.14",
     "bootstrap": "^4.6.0",
     "less": "^4.1.1",
@@ -23,14 +26,28 @@
     "web-vitals": "^1.1.1"
   },
   "scripts": {
-    "build": "GENERATE_SOURCEMAP=false react-scripts build",
+    "build": "react-scripts build",
     "eject": "react-scripts eject",
-    "start": "node server.js",
-    "start:dev": "react-scripts start"
+    "start": "react-scripts start",
+    "test": "npx cross-env CI=true run-s test:unit test:e2e",
+    "test:1": "run-p -l -r test:start:* \"test:e2e:run -- us-01\"",
+    "test:2": "run-p -l -r test:start:* \"test:e2e:run -- us-02\"",
+    "test:3": "run-p -l -r test:start:* \"test:e2e:run -- us-03\"",
+    "test:4": "run-p -l -r test:start:* \"test:e2e:run -- us-04\"",
+    "test:5": "run-p -l -r test:start:* \"test:e2e:run -- us-05\"",
+    "test:6": "run-p -l -r test:start:* \"test:e2e:run -- us-06\"",
+    "test:7": "run-p -l -r test:start:* \"test:e2e:run -- us-06\"",
+    "test:8": "run-p -l -r test:start:* \"test:e2e:run -- us-08\"",
+    "test:e2e": "run-p -l -r test:start:* test:e2e:run",
+    "test:e2e:run": "wait-on http://localhost:5000/reservations?date=2020-01-01 && jest --detectOpenHandles --forceExit --config ./e2e/jest.config.js",
+    "test:start:backend": "npm run test:start --prefix ./../back-end",
+    "test:start:frontend": "npx cross-env BROWSER=none NODE_ENV=test react-scripts start",
+    "test:unit": "react-scripts test"
   },
   "eslintConfig": {
     "extends": [
-      "react-app"
+      "react-app",
+      "react-app/jest"
     ]
   },
   "browserslist": {
@@ -47,7 +64,10 @@
   },
   "devDependencies": {
     "cross-fetch": "^3.1.4",
-    "jsdoc": "^3.6.6",
-    "npm-run-all": "^4.1.5"
+    "jest": "^26.6.0",
+    "jest-puppeteer": "^4.4.0",
+    "npm-run-all": "^4.1.5",
+    "puppeteer": "^8.0.0",
+    "supertest": "^6.1.3"
   }
 }
