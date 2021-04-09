@@ -21,10 +21,7 @@ import "./styles/scss/custom.scss";
 Settings.defaultZoneName = "America/New_York";
 
 /**
- * @function Layout
  * Defines the main layout of the application.
- * @const {string} currentDate
- * the date for the current time zone.
  * @returns {JSX.Element}
  */
 function Layout() {
@@ -39,9 +36,6 @@ function Layout() {
 
   /**
    * Adjust the `dateSetting` for displaying reservations.
-   * - Lifted from `ReservationsListOptions`.
-   * @param {integer} value
-   * the number of days +/- to adjust the `dateSetting`.
    */
   const handleChangeDateSetting = (value) =>
     typeof value === "number"
@@ -50,8 +44,6 @@ function Layout() {
 
   /**
    * Helper function for `handleChangeDateSetting`.
-   * @param {integer} value
-   * the number of days +/- to adjust the `dateSetting`.
    */
   const incrementDate = (value) => 
     DateTime.fromISO(dateSetting).plus({ days: value }).toISODate();

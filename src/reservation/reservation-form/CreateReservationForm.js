@@ -17,8 +17,6 @@ import { DateTime } from "luxon";
 
 /**
  * Defines the form used to create a new reservation.
- * @param {string} date
- *  the value of `dateSetting` from the `Layout` component.
  * @returns {JSX.Element}
  */
 function CreateReservationForm(props) {

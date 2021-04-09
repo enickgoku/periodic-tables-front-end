@@ -17,6 +17,7 @@ import Row from "react-bootstrap/Row";
 
 /**
  * Defines the dashboard page.
+ * @returns {JSX.Element}
  */
 function Dashboard(props) {
 

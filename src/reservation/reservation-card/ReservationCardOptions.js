@@ -12,8 +12,6 @@ import { finishReservation } from "../../utils/api";
 
 /**
  * Displays the reservation status and edit options for each `ReservationCard`.
- * @param {object} reservation
- *  an object containing reservation data.
  * @returns {JSX.Element}
  */
 function ReservationCardOptions(props) {

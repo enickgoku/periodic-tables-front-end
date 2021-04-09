@@ -9,10 +9,6 @@ import { DateTime } from "luxon";
 
 /**
  * Defines the reservation `<Card.Body>` for the `ReservationCard` component.
- * @param {object} reservation
- *  an object containing reservation data.
- * @param {string} date
- *  the value of `dateSetting` from the `Layout` component.
  * @returns {JSX.Element}
  */
 function ReservationCardBody(props) {
