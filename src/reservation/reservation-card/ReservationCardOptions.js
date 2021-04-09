@@ -62,6 +62,7 @@ function ReservationCardOptions(props) {
         }
         {reservation.status === "seated"
           ? <Button
+              as="a"
               variant="dark"
               className="d-flex align-items-center text-muted"
               style={{ fontSize: "1.2rem" }}
@@ -72,6 +73,7 @@ function ReservationCardOptions(props) {
           : null
         }
         <Button
+          as="a"
           variant="dark"
           className="d-flex align-items-center text-muted"
           style={{ fontSize: "1.2rem" }}

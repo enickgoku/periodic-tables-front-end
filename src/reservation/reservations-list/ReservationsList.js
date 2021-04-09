@@ -71,7 +71,7 @@ function ReservationsList(props) {
   ));
 
   return (
-    <Col xs={{ order: 1 }} md={{ span: 4, order: 2 }} lg={4} xl={3}>
+    <Col xs={{ order: 1 }} md={{ span: 5, order: 2 }} lg={4} xl={3}>
       <ReservationsListOptions
         {...props}
         reloadReservationList={loadReservations}

@@ -12,37 +12,50 @@ import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Button from "react-bootstrap/Button";
 
 // Utils
-import { listTables, occupyTable } from "../../utils/api";
+import { getReservation, listTables, occupyTable } from "../../utils/api";
 
 /**
 * The form component used to assign an existing `reservation` to an existing `table`
 */
 function SeatReservationForm(props) {
 
-    // let {
-    //     currentDate,
-    //     dateSetting,
-    //     setDateSetting,
-    //     currentTime,
-    //     changeDate
-    // } = props;
+    let {
+        // currentDate,
+        // dateSetting,
+        setDateSetting,
+        // currentTime,
+        // changeDate
+    } = props;
 
     const history = useHistory();
     const { reservationId } = useParams();
 
     const [formData, setFormData] = useState(null);
     const [freeTables, setFreeTables] = useState([]);
+    const [reservation, setReservation] = useState({});
     const [formError, setFormError] = useState(null);
 
-    useEffect(loadFreeTables, []);
-
-    function loadFreeTables() {
-        const abortController = new AbortController();
-        listTables(abortController.signal)
-            .then(setFreeTables)
-            .catch(setFormError);
-        return () => abortController.abort();
-    }
+    useEffect(() => {
+        function loadReservation() {
+            const abortController = new AbortController();
+            getReservation(reservationId, abortController.signal)
+                .then((response) => {
+                    setReservation(response);
+                    setDateSetting(response.reservation_date);
+                })
+                .catch(setFormError);
+            return () => abortController.abort();
+        }
+        function loadFreeTables() {
+            const abortController = new AbortController();
+            listTables(abortController.signal)
+                .then(setFreeTables)
+                .catch(setFormError);
+            return () => abortController.abort();
+        }
+        loadReservation();
+        loadFreeTables();
+    }, [reservationId, setDateSetting]);
 
     /**
     * Updates the state of the `formData` object on all controlled inputs.
@@ -63,6 +76,7 @@ function SeatReservationForm(props) {
         event.preventDefault();
         occupyTable(reservationId, formData.table_id)
             .then(() => {
+                setDateSetting(reservation.reservation_date);
                 history.push("/");
             })
             .catch(setFormError);
