@@ -8,6 +8,7 @@ import NotFound from "./NotFound";
 
 /**
  * Defines all of the routes for the application.
+ * @returns {JSX.Element}
  */
 function Routes(props) {
 

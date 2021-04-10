@@ -5,14 +5,26 @@ import React from "react";
 import Col from "react-bootstrap/Col";
 import Dropdown from "react-bootstrap/Dropdown";
 
-// Menu Options
-import { globalMenuOptions } from "./MenuOptions";
-
 /**
  * Defines the menu for this application.
  * @returns {JSX.Element}
  */
 function Menu() {
+
+  const globalMenuOptions = [
+    {
+      name: "Dashboard",
+      url: "/dashboard",
+    },
+    {
+      name: "New Reservation",
+      url: "/reservations/new",
+    },
+    {
+      name: "New Table",
+      url: "/tables/new",
+    }
+];
 
   /**
    * Defines the menu that displays on all pages.

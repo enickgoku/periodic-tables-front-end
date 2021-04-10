@@ -9,8 +9,6 @@ import { DateTime } from "luxon";
 
 /**
  * Defines the main header.
- * @param props
- * @param props.currentDate
  */
 function Header(props) {
 

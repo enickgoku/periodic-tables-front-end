@@ -25,7 +25,7 @@ function TableCardBody(props) {
     <ListGroup>
       <ListGroup.Item className="d-flex flex-column bg-list-bg p-2">
         <small>Status:</small>
-        <span data-table-id-status={table.id}>
+        <span data-table-id-status={table.table_id}>
           {table.reservation_id ? "Occupied" : "Free"}
         </span>
       </ListGroup.Item>

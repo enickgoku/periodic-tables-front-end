@@ -10,10 +10,6 @@ import Card from "react-bootstrap/Card";
 
 /**
  * Defines the main reservation card for mapping.
- * @param {object} reservation
- *  an object containing reservation data.
- * @param {string} date
- *  the value of `dateSetting` from the `Layout` component.
  * @returns {JSX.Element}
  */
 function ReservationCard(props) {

@@ -127,10 +127,10 @@ export async function createReservation(reservation, signal) {
   const options = {
     method: "POST",
     headers,
-    body: JSON.stringify(reservation),
+    body: JSON.stringify({ data: reservation }),
     signal,
   };
-  return await fetchJson(url, options);
+  return await fetchJson(url, options, reservation);
 }
 
 /**
@@ -251,7 +251,7 @@ export async function dismissReservation(tableId, reservationId) {
   const options = {
     method: "DELETE",
     headers,
-    body: JSON.stringify({ data: { reservationId }})
+    body: JSON.stringify({ data: { reservation_id: reservationId }})
   };
   return await fetchJson(url, options);
 }

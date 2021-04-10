@@ -12,8 +12,6 @@ import { finishReservation } from "../../utils/api";
 
 /**
  * Displays the reservation status and edit options for each `ReservationCard`.
- * @param {object} reservation
- *  an object containing reservation data.
  * @returns {JSX.Element}
  */
 function ReservationCardOptions(props) {
@@ -64,6 +62,7 @@ function ReservationCardOptions(props) {
         }
         {reservation.status === "seated"
           ? <Button
+              as="a"
               variant="dark"
               className="d-flex align-items-center text-muted"
               style={{ fontSize: "1.2rem" }}
@@ -74,6 +73,7 @@ function ReservationCardOptions(props) {
           : null
         }
         <Button
+          as="a"
           variant="dark"
           className="d-flex align-items-center text-muted"
           style={{ fontSize: "1.2rem" }}

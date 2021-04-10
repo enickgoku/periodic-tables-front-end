@@ -10,7 +10,7 @@ import Header from "./header/Header";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 
-// Utils + Settings
+// Utils
 import { DateTime, Settings } from "luxon";
 
 // Styles
@@ -21,16 +21,18 @@ import "./styles/scss/custom.scss";
 Settings.defaultZoneName = "America/New_York";
 
 /**
- * @function Layout
  * Defines the main layout of the application.
- * @const {string} currentDate
- * the date for the current time zone.
  * @returns {JSX.Element}
  */
 function Layout() {
+  /**
+   * Provides an option to set the date setting with a URL search query.
+   */
+  const currentUrlParams = new URLSearchParams(window.location.search);
+
   const [currentDate, setCurrentDate] = useState(DateTime.local().toISODate());
   const [currentTime, setCurrentTime] = useState(DateTime.local().toFormat("T"));
-  const [dateSetting, setDateSetting] = useState(currentDate);
+  const [dateSetting, setDateSetting] = useState(currentUrlParams.get("date") || currentDate);
 
   setInterval(() => {
     setCurrentDate(DateTime.local().toISODate());
@@ -39,9 +41,6 @@ function Layout() {
 
   /**
    * Adjust the `dateSetting` for displaying reservations.
-   * - Lifted from `ReservationsListOptions`.
-   * @param {integer} value
-   * the number of days +/- to adjust the `dateSetting`.
    */
   const handleChangeDateSetting = (value) =>
     typeof value === "number"
@@ -50,8 +49,6 @@ function Layout() {
 
   /**
    * Helper function for `handleChangeDateSetting`.
-   * @param {integer} value
-   * the number of days +/- to adjust the `dateSetting`.
    */
   const incrementDate = (value) => 
     DateTime.fromISO(dateSetting).plus({ days: value }).toISODate();

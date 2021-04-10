@@ -78,7 +78,7 @@ function TableCardOptions(props) {
           <Button variant="dark" onClick={handleClose}>
             Cancel
           </Button>
-          <Button variant="danger" onClick={handleDismissReservation}>
+          <Button variant="danger" autoFocus={true} onClick={handleDismissReservation}>
             Continue
           </Button>
         </Modal.Footer>

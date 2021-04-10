@@ -13,12 +13,9 @@ import Button from "react-bootstrap/Button";
 
 // API + Utils
 import { createReservation } from "../../utils/api";
-import { DateTime } from "luxon";
 
 /**
  * Defines the form used to create a new reservation.
- * @param {string} date
- *  the value of `dateSetting` from the `Layout` component.
  * @returns {JSX.Element}
  */
 function CreateReservationForm(props) {
@@ -54,7 +51,7 @@ function CreateReservationForm(props) {
     */
     function handleReservationCreate(event) {
         event.preventDefault();
-        const data = {
+        const reservation = {
             first_name: formData.first_name,
             last_name: formData.last_name,
             mobile_number: formData.mobile_number,
@@ -62,9 +59,9 @@ function CreateReservationForm(props) {
             reservation_time: formData.reservation_time,
             people: parseInt(formData.people),
         }
-        createReservation({ data })
+        createReservation(reservation)
             .then(() => {
-                setDateSetting(DateTime.fromISO(formData.reservation_date).toISODate());
+                setDateSetting(formData.reservation_date);
                 history.push("/");
             })
             .catch(setFormError);
@@ -120,7 +117,7 @@ function CreateReservationForm(props) {
                         type="date"
                         name="reservation_date"
                         size="lg"
-                        min={currentDate}
+                        // min={currentDate}
                         required={true}
                         onChange={handleFormChange}
                     />
