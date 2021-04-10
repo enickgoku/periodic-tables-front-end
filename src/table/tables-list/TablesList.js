@@ -65,9 +65,9 @@ function TablesList(props) {
   ));
 
   return (
-    <Col xs={{ span: "auto", order: 2 }} md={{ order: 1 }}>
+    <Col xs={{ span: 12, order: 2 }} md={{ order: 1 }}>
       <Row className="m-0 my-3 w-100">
-        <Col className="p-0">
+        <Col className="d-flex justify-content-end p-0">
           <TablesListOptions
             setFilter={setFilter}
             refreshFilteredTables={loadFilteredTables}
