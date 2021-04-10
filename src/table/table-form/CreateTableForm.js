@@ -88,6 +88,7 @@ function CreateTableForm() {
                 <ButtonGroup className="mt-4 w-100">
                     <Button
                         variant="dark"
+                        size="lg"
                         className="col-3"
                         onClick={handleCancelClick}
                     >
@@ -95,6 +96,7 @@ function CreateTableForm() {
                     </Button>
                     <Button
                         variant="success"
+                        size="lg"
                         type="submit"
                     >
                         Submit

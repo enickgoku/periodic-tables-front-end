@@ -2,6 +2,10 @@
     filter: invert(1);
 }
 
+::-webkit-scrollbar {
+    display: none;
+}
+
 /* Removes caret from dropdown buttons */
 .dropdown-toggle::after {
     display: none !important;
@@ -9,4 +13,11 @@
 
 select {
     -moz-appearance: none;
+}
+
+/* Custom Classes */
+
+.scrollable-list {
+    height: 82vh;
+    overflow-y: scroll;
 }

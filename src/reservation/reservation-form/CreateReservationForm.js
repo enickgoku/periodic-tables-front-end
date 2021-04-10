@@ -75,7 +75,7 @@ function CreateReservationForm(props) {
     }
 
     return (
-        <Col className="col col-sm-8 col-md-6 col-lg-5 col-xl-4 mb-5">
+        <Col sm={8} md={6} lg={5} xl={5} className="mb-5">
             <ErrorAlert error={formError} />
             <Form onSubmit={handleReservationCreate}>
                 <Form.Group controlId="first_name">
@@ -148,6 +148,7 @@ function CreateReservationForm(props) {
                 <ButtonGroup className="mt-4 w-100">
                     <Button
                         variant="dark"
+                        size="lg"
                         className="col-3"
                         onClick={handleCancelClick}
                     >
@@ -155,6 +156,7 @@ function CreateReservationForm(props) {
                     </Button>
                     <Button
                         variant="success"
+                        size="lg"
                         type="submit"
                     >
                         Submit

@@ -60,29 +60,36 @@ function ReservationsList(props) {
    */
   const reservationContent =
     reservations.map((reservation, index) => (
-      <Col key={index}>
-        <ReservationCard
-          {...props}
-          key={index}
-          reservation={reservation}
-          setReservationsError={setReservationsError}
-        />
-      </Col>
+      <Row key={index} className="w-100">
+        <Col xs={12} className="p-0">
+            <ReservationCard
+              {...props}
+              reservation={reservation}
+              setReservationsError={setReservationsError}
+            />
+          </Col>
+      </Row>
   ));
 
   return (
-    <Col xs={{ order: 1 }} md={{ span: 5, order: 2 }} lg={4} xl={3}>
-      <ReservationsListOptions
-        {...props}
-        reloadReservationList={loadReservations}
-        setReservationsFilter={setReservationsFilter}
-      />
-      <Row className="d-flex flex-column align-items-center p-0 mt-2">
-        {reservationsError ? <ErrorAlert error={reservationsError} /> : null}
-        {isLoading && !reservationsError ? <img src={process.env.PUBLIC_URL + "/loading.png"} alt="Loading..." /> : null}
-        {!reservations.length && !isLoading
-          ? <h3 className="p-3">No Reservations</h3>
-          : reservationContent}
+    <Col xs={{ order: 2 }} md={{ order: 1, span: 5 }} lg={4} xl={3}>
+      <Row className="my-3">
+        <Col xs={12} className="d-flex justify-content-between">
+          <ReservationsListOptions
+            {...props}
+            reloadReservationList={loadReservations}
+            setReservationsFilter={setReservationsFilter}
+          />
+        </Col>
+      </Row>
+      <Row className="scrollable-list">
+        <Col className="d-flex flex-column align-items-center justify-content-center">
+          {reservationsError ? <ErrorAlert error={reservationsError} /> : null}
+          {isLoading && !reservationsError ? <img src={process.env.PUBLIC_URL + "/loading.png"} alt="Loading..." /> : null}
+          {!reservations.length && !isLoading
+            ? <h3 className="p-3">No Reservations</h3>
+            : reservationContent}
+        </Col>
       </Row>
     </Col>
   );

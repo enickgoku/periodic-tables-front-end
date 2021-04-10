@@ -114,6 +114,7 @@ function EditTableForm() {
                     <ButtonGroup className="mt-4 w-100">
                         <Button
                             variant="dark"
+                            size="lg"
                             className="col-3"
                             onClick={handleCancelClick}
                         >
@@ -121,6 +122,7 @@ function EditTableForm() {
                         </Button>
                         <Button
                             variant="danger"
+                            size="lg"
                             className="col-3"
                             onClick={handleShow}
                         >
@@ -128,6 +130,7 @@ function EditTableForm() {
                         </Button>
                         <Button
                             variant="success"
+                            size="lg"
                             type="submit"
                         >
                             Submit

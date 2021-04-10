@@ -16,6 +16,10 @@ function Menu() {
       name: "Dashboard",
       url: "/dashboard",
     },
+    // {
+    //   name: "Search",
+    //   url: "/search"
+    // },
     {
       name: "New Reservation",
       url: "/reservations/new",
@@ -36,20 +40,22 @@ function Menu() {
   ));
 
   return (
-    <Col xs="auto" className="d-flex align-items-center">
-      <Dropdown>
-        <Dropdown.Toggle
-          as="a"
-          variant="dark"
-          style={{ fontSize: "2rem" }}
-        >
-          <i className="ri-grid-fill" />
-        </Dropdown.Toggle>
-        <Dropdown.Menu>
-          {globalPageOptions}
-        </Dropdown.Menu>
-      </Dropdown>
-    </Col>
+    <>
+      <Col xs={4} className="d-flex align-items-center">
+        <Dropdown>
+          <Dropdown.Toggle
+            variant="dark"
+            className="mr-4"
+            style={{ fontSize: "1.5rem" }}
+          >
+            <i className="ri-grid-fill" />
+          </Dropdown.Toggle>
+          <Dropdown.Menu>
+            {globalPageOptions}
+          </Dropdown.Menu>
+        </Dropdown>
+      </Col>
+    </>
   );
 }
 
