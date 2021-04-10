@@ -6,6 +6,8 @@ import { useHistory } from "react-router-dom";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import Tooltip from "react-bootstrap/Tooltip";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 
 // API
 import { finishReservation } from "../../utils/api";
@@ -50,47 +52,67 @@ function ReservationCardOptions(props) {
     <>
       <ButtonGroup vertical>
         {reservation.status === "booked"
-          ? <Button
-              variant="dark"
-              className="d-flex align-items-center text-muted"
-              style={{ fontSize: "1.2rem" }}
-              href={`/reservations/${reservation.reservation_id}/seat`}
+          ? <OverlayTrigger
+              transition={false}
+              placement="left"
+              overlay={<Tooltip id={`reservation-${reservation.reservation_id}-seat-tooltip`}>Seat To Table</Tooltip>}
             >
-              <i className="ri-map-pin-user-fill" title="Seat Reservation" />
-            </Button>
+              <Button
+                variant="dark"
+                className="d-flex align-items-center text-muted"
+                style={{ fontSize: "1.2rem" }}
+                href={`/reservations/${reservation.reservation_id}/seat`}
+              >
+                <i className="ri-map-pin-user-fill" />
+              </Button>
+            </OverlayTrigger>
           : null
         }
         {reservation.status === "seated"
-          ? <Button
-              as="a"
-              variant="dark"
-              className="d-flex align-items-center text-muted"
-              style={{ fontSize: "1.2rem" }}
-              onClick={handleShow}
+          ? <OverlayTrigger
+              transition={false}
+              placement="left"
+              overlay={<Tooltip id={`reservation-${reservation.reservation_id}-finish-tooltip`}>Finish Reservation</Tooltip>}
             >
-              <i className="ri-close-circle-fill" title="Finished" />
-            </Button>
+              <Button
+                as="a"
+                variant="dark"
+                className="d-flex align-items-center text-muted"
+                style={{ fontSize: "1.2rem" }}
+                onClick={handleShow}
+              >
+                <i className="ri-close-circle-fill" />
+              </Button>
+            </OverlayTrigger>
           : null
         }
-        <Button
-          as="a"
-          variant="dark"
-          className="d-flex align-items-center text-muted"
-          style={{ fontSize: "1.2rem" }}
-          href={`/reservations/${reservation.reservation_id}/edit`}
+        <OverlayTrigger
+          transition={false}
+          placement="left"
+          overlay={<Tooltip id={`reservation-${reservation.reservation_id}-edit-tooltip`}>Edit</Tooltip>}
         >
-          <i className="ri-pencil-line" title="Edit Reservation" />
-        </Button>
+          <Button
+            as="a"
+            variant="dark"
+            className="d-flex align-items-center text-muted"
+            style={{ fontSize: "1.2rem" }}
+            href={`/reservations/${reservation.reservation_id}/edit`}
+          >
+            <i className="ri-pencil-line" />
+          </Button>
+        </OverlayTrigger>
       </ButtonGroup>
       <Modal
-          show={showConfirmation}
-          onHide={handleClose}
+        animation={false}
+        show={showConfirmation}
+        onHide={handleClose}
+        backdrop="static"
       >
         <Modal.Header>
-        <Modal.Title>Delete Reservation</Modal.Title>
+        <Modal.Title>Finish Reservation</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        You are about to mark this reservation as finished. This cannot be undone. Continue?
+          You are about to mark this reservation as finished. This cannot be undone. Continue?
         </Modal.Body>
         <Modal.Footer>
         <Button variant="dark" onClick={handleClose}>
