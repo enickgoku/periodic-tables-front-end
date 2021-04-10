@@ -63,6 +63,7 @@ function CreateTableForm() {
     return (
         <Col className="col col-sm-8 col-md-6 col-lg-5 col-xl-4 mb-5">
             <ErrorAlert error={formError} />
+            <h2>Create Table</h2>
             <Form onSubmit={handleTableFormSubmit}>
                 <Form.Group controlId="first_name">
                     <Form.Label>Table Name:</Form.Label>

@@ -72,7 +72,7 @@ function ReservationsList(props) {
   ));
 
   return (
-    <Col xs={{ order: 2 }} md={{ order: 1, span: 5 }} lg={4} xl={3}>
+    <Col xs={{ order: 1 }} md={{ order: 2, span: 5 }} lg={4} xl={3}>
       <Row className="my-3">
         <Col xs={12} className="d-flex justify-content-between">
           <ReservationsListOptions
