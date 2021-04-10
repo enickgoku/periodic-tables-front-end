@@ -2,13 +2,14 @@
 import React, { useState } from "react";
 
 // React Components
+import Header from "./header/Header";
 import Menu from "../menu/Menu";
 import Routes from "./Routes";
 
 // React Bootstrap Components
-import Header from "./header/Header";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 // Utils
 import { DateTime, Settings } from "luxon";
@@ -55,22 +56,26 @@ function Layout() {
 
   return (
     <Container fluid>
-      <Row className="d-flex justify-content-between p-2 my-4">
-        <Menu />
-        <Header
-          currentDate={currentDate}
-          currentTime={currentTime}
-          dateSetting={dateSetting}
-        />
+      <Row style={{ minHeight: "10vh" }}>
+        <Col xs={12} className="d-flex justify-content-between align-items-center p-0">
+          <Menu />
+          <Header
+            currentDate={currentDate}
+            currentTime={currentTime}
+            dateSetting={dateSetting}
+          />
+        </Col>
       </Row>
-      <Row className="d-flex justify-content-center">
-        <Routes
-          currentDate={currentDate}
-          dateSetting={dateSetting}
-          setDateSetting={setDateSetting}
-          currentTime={currentTime}
-          changeDate={handleChangeDateSetting}
-        />
+      <Row style={{ height: "90vh" }}>
+        <Col xs={12} className="d-flex justify-content-center align-items-center p-0">
+          <Routes
+            currentDate={currentDate}
+            dateSetting={dateSetting}
+            setDateSetting={setDateSetting}
+            currentTime={currentTime}
+            changeDate={handleChangeDateSetting}
+          />
+        </Col>
       </Row>
     </Container>
   );

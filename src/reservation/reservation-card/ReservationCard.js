@@ -26,7 +26,7 @@ function ReservationCard(props) {
 
   const borderStyle =
     reservation.status === "booked" || reservation.status === "finished"
-      ? "border-list-bg"
+      ? "border-body-bg"
       : "border-danger";
 
   const finishedStyle =
@@ -35,8 +35,8 @@ function ReservationCard(props) {
       : "100%";
 
   return (
-    <Card className={`d-flex flex-row ${borderStyle} my-2`} style={{ opacity: finishedStyle }}>
-      <Card.Body className="col d-flex flex-column p-0">
+    <Card className={`d-flex flex-row ${borderStyle} mb-1`} style={{ opacity: finishedStyle }}>
+      <Card.Body className="d-flex flex-column p-0">
         <ReservationCardBody {...props} />
       </Card.Body>
       <Card.Footer className="d-flex justify-content-center p-0">

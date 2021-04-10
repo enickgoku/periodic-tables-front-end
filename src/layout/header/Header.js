@@ -40,7 +40,7 @@ function Header(props) {
   const style = dateSetting < currentDate ? "text-muted" : null;
 
   return (
-    <Col xs="auto" className="d-flex flex-column align-items-end">
+    <Col className="d-flex flex-column align-items-end">
       <span style={{ fontSize: "2rem" }}>{formalTime}</span>
       <span className={style}>{formalDate}</span>
     </Col>

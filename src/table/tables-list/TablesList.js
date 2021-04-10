@@ -55,7 +55,7 @@ function TablesList(props) {
    * Defines all fetched table elements.
    */
   const tableContent = tables.map((table, index) => (
-    <Col key={index} sm={6} lg={4} xl={3}>
+    <Col key={index} xs={12} md={6} lg={4} xl={3} className="p-0">
       <TableCard
         {...props}
         table={table}
@@ -64,23 +64,24 @@ function TablesList(props) {
     </Col>
   ));
 
-  const statusDisplay = filter.split("").map((letter, index) => !index ? letter.toUpperCase() : letter);
-
   return (
-    <Col xs={{ order: 2 }} md={{ order: 1 }} className="mb-5">
-      <Row className="d-flex justify-content-between align-items-center p-3">
-        <h3>{statusDisplay} Tables</h3>
-        <TablesListOptions
-          setFilter={setFilter}
-          refreshFilteredTables={loadFilteredTables}
-        />
+    <Col xs={{ span: "auto", order: 2 }} md={{ order: 1 }}>
+      <Row className="m-0 my-3 w-100">
+        <Col className="p-0">
+          <TablesListOptions
+            setFilter={setFilter}
+            refreshFilteredTables={loadFilteredTables}
+          />
+        </Col>
       </Row>
-      <Row className="d-flex flex-wrap justify-content-center p-0 mt-2">
-        {tablesError ? <ErrorAlert error={tablesError} /> : null}
-        {isLoading && !tablesError ? <img src={process.env.PUBLIC_URL + "/loading.png"} alt="Loading..." /> : null}
-        {!tables.length && !isLoading
-          ? <h3 className="p-3">No Tables</h3>
-          : tableContent}
+      <Row className="scrollable-list">
+        <Col className="d-flex flex-wrap justify-content-center align-items-center">
+          {tablesError ? <ErrorAlert error={tablesError} /> : null}
+          {isLoading && !tablesError ? <img src={process.env.PUBLIC_URL + "/loading.png"} alt="Loading..." /> : null}
+          {!tables.length && !isLoading
+            ? <h3 className="p-3">No Tables</h3>
+            : tableContent}
+        </Col>
       </Row>
     </Col>
   );

@@ -26,13 +26,13 @@ function TableCard(props) {
     // setTablesError
   } = props;
 
-  const style =
+  const borderStyle =
     table.reservation_id
       ? "border-danger"
-      : "border-success";
+      : "border-body-bg";
 
   return (
-    <Card className={`d-flex flex-row ${style} my-2`}>
+    <Card className={`d-flex flex-row ${borderStyle} mb-1`}>
       <Card.Body className="d-flex flex-column p-0">
         <TableCardBody {...props} />
       </Card.Body>
